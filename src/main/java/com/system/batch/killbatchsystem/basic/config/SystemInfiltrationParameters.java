@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.config;
+package com.system.batch.killbatchsystem.basic.config;
 
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.listenerconfig;
+package com.system.batch.killbatchsystem.basic.listenerconfig;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
