@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @StepScope
-@Component
+//@Component
 public class SystemInfiltrationParameters {
     @Value("#{jobParameters[missionName]}")
     private String missionName;

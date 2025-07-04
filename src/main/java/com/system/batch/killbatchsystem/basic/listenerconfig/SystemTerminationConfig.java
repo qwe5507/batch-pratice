@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
-@Configuration
+//@Configuration
 public class SystemTerminationConfig {
     @Bean
     public Job systemTerminationJob(JobRepository jobRepository, Step scanningStep, Step eliminationStep) {

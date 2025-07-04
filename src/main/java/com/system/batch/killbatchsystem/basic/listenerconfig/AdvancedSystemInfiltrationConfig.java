@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Random;
 
 @Slf4j
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class AdvancedSystemInfiltrationConfig {
     private final InfiltrationPlanListener infiltrationPlanListener;

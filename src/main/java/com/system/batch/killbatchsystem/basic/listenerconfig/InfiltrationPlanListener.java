@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Random;
 
 @Slf4j
-@Component
+//@Component
 public class InfiltrationPlanListener implements JobExecutionListener {
 
     @Override

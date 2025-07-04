@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Slf4j
-@Configuration
+//@Configuration
 public class TerminatorConfig {
     public enum QuestDifficulty { EASY, NORMAL, HARD, EXTREME }
 
