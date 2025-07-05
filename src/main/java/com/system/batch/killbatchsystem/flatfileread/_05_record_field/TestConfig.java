@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.flatfile._05_record_field;
+package com.system.batch.killbatchsystem.flatfileread._05_record_field;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.configuration.annotation.StepScope;

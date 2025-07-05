@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.flatfile._03_regex_line_tokenize;
+package com.system.batch.killbatchsystem.flatfileread._03_regex_line_tokenize;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.flatfile._01_delimited;
+package com.system.batch.killbatchsystem.flatfileread._01_delimited;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.flatfile._04_composite_linemapper;
+package com.system.batch.killbatchsystem.flatfileread._04_composite_linemapper;
 
 import lombok.Data;
 import lombok.ToString;
