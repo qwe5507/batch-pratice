@@ -12,7 +12,7 @@ import org.springframework.core.io.FileSystemResource;
 // RecordFieldSetMapper는 record의 canonical constructor(모든 필드를 매개변수로 받는 생성자)를 사용해 데이터를 매핑한다.
 // RecordFieldSetMapper는 테스트 안해봄.
 @Slf4j
-@Configuration
+//@Configuration
 public class TestConfig {
     @Bean
     @StepScope
