@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class VictimRecordConfig {
     private final JobRepository jobRepository;
