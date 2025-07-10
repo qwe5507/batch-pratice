@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Slf4j
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class VictimConfig {
     private final JobRepository jobRepository;
