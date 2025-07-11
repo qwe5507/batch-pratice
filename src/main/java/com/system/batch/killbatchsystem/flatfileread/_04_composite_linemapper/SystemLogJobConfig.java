@@ -29,7 +29,7 @@ import java.util.Map;
 
 // 패턴이 뒤죽박죽일 때 패턴 매칭을 통해 서로 다른 LineTokenizer와 FieldSetMapper를 적용할 수 있다.
 @Slf4j
-@Configuration
+//@Configuration
 public class SystemLogJobConfig {
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;

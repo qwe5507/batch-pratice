@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class OrderRecoveryJobConfig {
     private final JobRepository jobRepository;
