@@ -1,4 +1,4 @@
-package com.system.batch.killbatchsystem.mongodb;
+package com.system.batch.killbatchsystem.mongodb.write;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-// SuspiciousDevice.java
 @Document
 @Data
 public class SuspiciousDevice {

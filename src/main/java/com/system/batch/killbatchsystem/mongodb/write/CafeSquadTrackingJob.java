@@ -1,6 +1,5 @@
-package com.system.batch.killbatchsystem.mongodb;
+package com.system.batch.killbatchsystem.mongodb.write;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -11,15 +10,13 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.data.MongoCursorItemReader;
+import org.springframework.batch.item.data.MongoItemWriter;
 import org.springframework.batch.item.data.builder.MongoCursorItemReaderBuilder;
+import org.springframework.batch.item.data.builder.MongoItemWriterBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.time.LocalDateTime;
@@ -89,8 +86,9 @@ public class CafeSquadTrackingJob {
     @Bean
     public ItemProcessor<SuspiciousDevice, SuspiciousDevice> cafeSquadProcessor() {
         return device -> {
-            // MAC 주소가 수상한 패턴을 가진 경우에만 필터링
             if (isSuspiciousMacPattern(device.getMacAddress())) {
+                // MAC 주소를 알 수 없는 값으로 변조
+                device.setMacAddress("HA:CK:ED:13:37:666");
                 return device;
             }
             return null;
@@ -104,37 +102,11 @@ public class CafeSquadTrackingJob {
     }
 
     @Bean
-    public ItemWriter<SuspiciousDevice> cafeSquadWriter() {
-        return items -> items.forEach(device -> log.info("[탐지] :{}", device));
+    public MongoItemWriter<SuspiciousDevice> cafeSquadWriter() {
+        return new MongoItemWriterBuilder<SuspiciousDevice>()
+                .template(mongoTemplate)
+                .collection("pangyo_cafe_devices")
+                .mode(MongoItemWriter.Mode.UPSERT)  // 기존 문서 수정
+                .build();
     }
-
-    // Query 객체를 직접 사용해서 구성할수도 있음
-//    @Bean
-//    public MongoCursorItemReader<SuspiciousDevice> cafeSquadReader() {
-//        Query query = new Query()
-//                .addCriteria(
-//                        Criteria.where("location").in(
-//                                "St*rbucks_pangyo",
-//                                "Fl*nk_cafe",
-//                                "Col*ctivo"
-//                        )
-//                )
-//                .addCriteria(
-//                        Criteria.where("timestamp")
-//                                .gte(LocalDateTime.now().withHour(16).withMinute(0))
-//                                .lt(LocalDateTime.now().withHour(17).withMinute(0))
-//                )
-//                .with(Sort.by(Sort.Direction.DESC, "timestamp"))
-//                .cursorBatchSize(10);
-//
-//        return new MongoCursorItemReaderBuilder<SuspiciousDevice>()
-//                .name("cafeInfiltrationSquadReader")
-//                .template(mongoTemplate)
-//                .collection("pangyo_cafe_devices")
-//                .query(query)
-//                .sorts(Map.of("timestamp", Sort.Direction.DESC))  // 빌더의 버그 때문에 필요
-//                .targetType(SuspiciousDevice.class)
-//                .batchSize(10)
-//                .build();
-//    }
 }
