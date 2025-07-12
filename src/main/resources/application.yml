@@ -1,4 +1,7 @@
 spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/cyberops
   application:
     name: kill-batch-system
   sql:
@@ -23,3 +26,4 @@ spring:
 logging:
   level:
     org.springframework.batch.item.database: DEBUG
+
