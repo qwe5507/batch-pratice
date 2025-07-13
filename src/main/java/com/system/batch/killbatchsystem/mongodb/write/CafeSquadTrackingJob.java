@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Slf4j
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class CafeSquadTrackingJob {
     private final MongoTemplate mongoTemplate;
