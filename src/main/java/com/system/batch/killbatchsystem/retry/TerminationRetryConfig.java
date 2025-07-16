@@ -22,7 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class TerminationRetryConfig {
     private final JobRepository jobRepository;
@@ -46,7 +46,8 @@ public class TerminationRetryConfig {
                 .retry(TerminationFailedException.class) // 재시도 대상 예외 추가
                 .retryLimit(3)
                 .listener(retryListener())
-//                .processorNonTransactional() // ItemProcessor 비트랜잭션 처리
+//                .processorNonTransactional() // ItemProcessor 비트랜잭션 처리, 멱등하지 않는 itemProcessor의 경우
+
                 // BackOffPolicy 설정
 //                .backOffPolicy(new FixedBackOffPolicy() {{
 //                    setBackOffPeriod(1000); // 1초
