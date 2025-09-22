@@ -20,7 +20,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
-@Configuration
+//@Configuration
 public class LogAnalysisJobConfig {
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
@@ -30,14 +30,14 @@ public class LogAnalysisJobConfig {
         this.transactionManager = transactionManager;
     }
 
-    @Bean
+//    @Bean
     public Job logAnalysisJob() {
         return new JobBuilder("logAnalysisJob", jobRepository)
                 .start(logAnalysisStep())
                 .build();
     }
 
-    @Bean
+//    @Bean
     public Step logAnalysisStep() {
         return new StepBuilder("logAnalysisStep", jobRepository)
                 .<LogEntry, LogEntry>chunk(10, transactionManager)
@@ -46,8 +46,8 @@ public class LogAnalysisJobConfig {
                 .build();
     }
 
-    @Bean
-    @StepScope
+//    @Bean
+//    @StepScope
     public FlatFileItemReader<LogEntry> logItemReader(
             @Value("#{jobParameters['inputFile']}") String inputFile) {
         RegexLineTokenizer tokenizer = new RegexLineTokenizer();
@@ -61,7 +61,7 @@ public class LogAnalysisJobConfig {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public ItemWriter<LogEntry> logItemWriter() {
         return items -> {
             for (LogEntry logEntry : items) {
