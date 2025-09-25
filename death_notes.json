@@ -1,0 +1,5 @@
+[
+ {"victimId":"KILL-001","victimName":"김배치","executionDate":"2024-01-25","causeOfDeath":"CPU 과부하"},
+ {"victimId":"KILL-002","victimName":"사불링스","executionDate":"2024-01-26","causeOfDeath":"JVM 스택오버플로우"},
+ {"victimId":"KILL-003","victimName":"박탐묘","executionDate":"2024-01-27","causeOfDeath":"힙 메모리 고갈"}
+]
