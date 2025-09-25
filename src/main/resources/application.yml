@@ -16,6 +16,12 @@ spring:
       initialize-schema: always
     job:
       enabled: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: kill-9
+
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
@@ -32,3 +38,10 @@ logging:
   level:
     org.springframework.batch.item.database: DEBUG
 
+rabbitmq:
+  queue:
+    job-requests: job-requests-queue
+  exchange:
+    job-requests: job-requests-exchange
+  routing-key:
+    job-requests: job.launch
