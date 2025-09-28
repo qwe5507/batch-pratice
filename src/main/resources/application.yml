@@ -7,15 +7,15 @@ spring:
       port: 6379
   application:
     name: kill-batch-system
-#  sql:
-#    init:
-#      mode: always
-#      schema-locations: classpath:org/springframework/batch/core/schema-drop-postgresql.sql
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:org/springframework/batch/core/schema-drop-postgresql.sql
   batch:
     jdbc:
       initialize-schema: always
     job:
-      enabled: false
+      enabled: true
   rabbitmq:
     host: localhost
     port: 5672
