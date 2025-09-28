@@ -34,17 +34,29 @@ public class InflearnLectureReviewJobConfig {
                 .start(analyzeLectureStep) // 모든 것은 강의 분석에서 시작된다...
                 .on("APPROVED").to(approveImmediatelyStep)     //  합격. 즉시 승인 및 게시. 축배를 들어라!
 
-                .from(analyzeLectureStep) // 다시 분석 스텝으로 돌아와서...
-                .on("PLAGIARISM_DETECTED").to(initiateContainmentProtocolStep)  //  표절 의심? 즉시 격리 및 저작권 위반 심문 시작 💀
+//                .from(analyzeLectureStep) // 다시 분석 스텝으로 돌아와서...
+//                .on("PLAGIARISM_DETECTED").to(initiateContainmentProtocolStep)  //  표절 의심? 즉시 격리 및 저작권 위반 심문 시작 💀
 
-                .from(analyzeLectureStep) //  또 다시 분석 스텝...
-                .on("TOO_EXPENSIVE").to(priceGougerPunishmentStep)      // 수강생 등골 브레이커 탐지! '바가지 요금 처단' 스텝으로 보내 경제 정의 실현!
+//                .from(analyzeLectureStep) //  마지막이다...
+//                .on("666_UNKNOWN_PANIC").to(adminManualCheckStep)     // 💀💀💀💀 컨텐츠 담당자 공포에 떨며 검토 중 💀💀💀💀
 
-                .from(analyzeLectureStep) //  마지막이다...
-                .on("666_UNKNOWN_PANIC").to(adminManualCheckStep)     // 💀💀💀💀 컨텐츠 담당자 공포에 떨며 검토 중 💀💀💀💀
+//                .from(analyzeLectureStep) //  또 다시 분석 스텝...
+//                .on("TOO_EXPENSIVE").to(priceGougerPunishmentStep)      // 수강생 등골 브레이커 탐지! '바가지 요금 처단' 스텝으로 보내 경제 정의 실현!
+//
+//                .from(analyzeLectureStep) //  또 다시 ...
+//                .on("QUALITY_SUBSTANDARD").to(lowQualityRejectionStep)   // 품질 미달? 기준 이하는 용납 못한다!
 
-                .from(analyzeLectureStep) //  또 다시 ...
-                .on("QUALITY_SUBSTANDARD").to(lowQualityRejectionStep)   // 품질 미달? 기준 이하는 용납 못한다!
+                .from(analyzeLectureStep)
+                .on("PLAGIARISM_DETECTED").fail()  // 표절 감지 즉시 실패 처리, 추가 단계 없음
+
+                .from(analyzeLectureStep)
+                .on("666_UNKNOWN_PANIC").to(adminManualCheckStep).on("*").stop()  // 관리자 검토 후 결과와 무관하게 중단 상태로 종료
+
+                .from(analyzeLectureStep)
+                .on("TOO_EXPENSIVE").to(priceGougerPunishmentStep).on("*").end()  // 바가지 요금 탐지 후 처리 결과와 무관하게 성공 종료
+
+                .from(analyzeLectureStep)
+                .on("QUALITY_SUBSTANDARD").to(lowQualityRejectionStep).on("*").end()  // 품질 미달 처리 후 결과와 무관하게 성공 종료
 
                 .end() // Flow 종료
                 .build();
