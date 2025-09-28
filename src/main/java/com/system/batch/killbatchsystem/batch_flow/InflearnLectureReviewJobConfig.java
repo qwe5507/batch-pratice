@@ -43,6 +43,9 @@ public class InflearnLectureReviewJobConfig {
                 .from(analyzeLectureStep) //  마지막이다...
                 .on("666_UNKNOWN_PANIC").to(adminManualCheckStep)     // 💀💀💀💀 컨텐츠 담당자 공포에 떨며 검토 중 💀💀💀💀
 
+                .from(analyzeLectureStep) //  또 다시 ...
+                .on("QUALITY_SUBSTANDARD").to(lowQualityRejectionStep)   // 품질 미달? 기준 이하는 용납 못한다!
+
                 .end() // Flow 종료
                 .build();
     }
