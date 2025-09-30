@@ -37,6 +37,7 @@ spring:
 logging:
   level:
     org.springframework.batch.item.database: DEBUG
+    org.springframework.batch.core: DEBUG
 
 rabbitmq:
   queue:
