@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/cyberops
+      uri: mongodb://localhost:27017/skynet
     redis:
       host: localhost
       port: 6379
